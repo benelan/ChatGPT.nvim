@@ -42,8 +42,12 @@ local function write_virtual_text(bufnr, ns, line, chunks, mode)
 end
 
 M.read_config = function()
-  local home = os.getenv("HOME") or os.getenv("USERPROFILE")
-  local file = io.open(home .. "/" .. ".chatgpt-" .. M.type .. "-params.json", "rb")
+  local dir = vim.env.HOME or vim.env.USERPROFILE
+  if vim.fn.isdirectory(vim.env.XDG_STATE_HOME) == 1 then
+    dir = vim.env.XDG_STATE_HOME .. "/nvim"
+  end
+
+  local file = io.open(dir .. "/" .. ".chatgpt-" .. M.type .. "-params.json", "rb")
   if not file then
     return nil
   end
@@ -55,8 +59,12 @@ M.read_config = function()
 end
 
 M.write_config = function(config)
-  local home = os.getenv("HOME") or os.getenv("USERPROFILE")
-  local file, err = io.open(home .. "/" .. ".chatgpt-" .. M.type .. "-params.json", "w")
+  local dir = vim.env.HOME or vim.env.USERPROFILE
+  if vim.fn.isdirectory(vim.env.XDG_STATE_HOME) == 1 then
+    dir = vim.env.XDG_STATE_HOME .. "/nvim"
+  end
+
+  local file, err = io.open(dir .. "/" .. ".chatgpt-" .. M.type .. "-params.json", "w")
   if file ~= nil then
     local json_string = vim.json.encode(config)
     file:write(json_string)
