@@ -281,7 +281,7 @@ M.edit_with_instructions = function(output_lines, bufnr, selection, ...)
       vim.api.nvim_set_current_win(extra_panel.winid)
       active_panel = extra_panel
       vim.api.nvim_buf_set_option(extra_panel.bufnr, "modifiable", modifiable_panel)
-      vim.api.nvim_win_set_option(extra_panel.winid, "cursorline", true)
+      vim.api.nvim_win_set_option(extra_panel.winid, "cursorline", false)
     else
       table.remove(open_extra_panels, extra_open)
       if #open_extra_panels == 0 then

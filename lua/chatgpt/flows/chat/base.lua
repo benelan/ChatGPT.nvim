@@ -864,7 +864,7 @@ function Chat:open()
 
     if settings_open then
       vim.api.nvim_buf_set_option(self.open_extra_panels[settings_open].bufnr, "modifiable", false)
-      vim.api.nvim_win_set_option(self.open_extra_panels[settings_open].winid, "cursorline", true)
+      vim.api.nvim_win_set_option(self.open_extra_panels[settings_open].winid, "cursorline", false)
 
       self:set_active_panel(self.open_extra_panels[settings_open])
     else
@@ -886,7 +886,7 @@ function Chat:open()
 
     if help_open then
       vim.api.nvim_buf_set_option(self.open_extra_panels[help_open].bufnr, "modifiable", false)
-      vim.api.nvim_win_set_option(self.open_extra_panels[help_open].winid, "cursorline", true)
+      vim.api.nvim_win_set_option(self.open_extra_panels[help_open].winid, "cursorline", false)
 
       self:set_active_panel(self.help_panel)
     else
